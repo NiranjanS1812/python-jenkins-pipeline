@@ -14,7 +14,8 @@ pipeline {
         stage('Build') {
             steps {
                 echo "Running compile check on app.py..."
-                sh "python3 -m py_compile app.py"
+                // Use 'bat' for Windows instead of 'sh'
+                bat "python -m py_compile app.py"
             }
         }
         stage('Deploy') {
@@ -24,7 +25,8 @@ pipeline {
                           ok: "Release"
                 }
                 echo "Deploying ${APP_NAME} version ${APP_VERSION}..."
-                sh "python3 app.py"
+                // Use 'bat' for Windows instead of 'sh'
+                bat "python app.py"
             }
         }
     }
